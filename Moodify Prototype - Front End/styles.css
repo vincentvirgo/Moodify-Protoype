@@ -1,0 +1,404 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    line-height: 1;
+}
+
+.main-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, 
+        #6968D4 0%, 
+        #2D2E5F 35%,
+        #1F2044 65%,
+        #1F2044 100%
+    );
+    padding: 0;
+    position: relative;
+    background-size: 400% 400%;
+    animation: gradientAnimation 12s ease infinite;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    top: 0;
+}
+
+.main-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(105, 104, 212, 0.4) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(45, 46, 95, 0.4) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(31, 32, 68, 0.2) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.main-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.05"/></svg>');
+    pointer-events: none;
+    opacity: 0.15;
+}
+
+.main-content {
+    padding-top: 80px;
+    flex-grow: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.main-title {
+    color: white;
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-box input {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 25px;
+    padding: 15px 25px;
+    font-size: 1.1rem;
+    border: none;
+}
+
+.btn-arrow {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #2A265F;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-arrow:hover {
+    color: #6B5ECD;
+    transform: translateY(-50%) scale(1.1);
+    cursor: pointer;
+}
+
+.btn-arrow:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.mood-section {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.mood-question {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.mood-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.mood-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 10px 25px;
+    transition: all 0.3s ease;
+}
+
+.mood-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.footer-text {
+    color: white;
+    text-align: center;
+    z-index: 1;
+    opacity: 0.9;
+    padding: 20px 0 30px 0;
+    width: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.2));
+    position: relative;
+    z-index: 1;
+}
+
+.footer-text p {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2rem;
+        padding: 0 20px;
+    }
+
+    .search-container {
+        padding: 0 20px;
+    }
+
+    .mood-buttons {
+        flex-direction: column;
+    }
+
+    .mood-btn {
+        width: 100%;
+    }
+}
+
+.sidebar {
+    position: fixed;
+    left: -300px;
+    top: 0;
+    width: 300px;
+    height: 100vh;
+    background: rgba(42, 38, 95, 0.98);
+    z-index: 1000;
+    transition: left 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-close-sidebar {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.sidebar-menu {
+    padding: 20px 0;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-left: 3px solid #6B5ECD;
+    color: white;
+}
+
+.menu-item i {
+    margin-right: 15px;
+    font-size: 1.2rem;
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+    backdrop-filter: blur(3px);
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
+
+/* Add hover effect for the menu toggle button */
+#menuToggle:hover {
+    opacity: 0.8;
+}
+
+.loading-spinner {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+}
+
+.loading-spinner.active {
+    display: block;
+}
+
+.btn-arrow.loading {
+    display: none;
+}
+
+.mood-btn.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.mood-btn.processing {
+    background: rgba(107, 94, 205, 0.3);
+    border-color: #6B5ECD;
+}
+
+.results-section {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.song-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.song-card:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.song-thumbnail {
+    width: 80px;
+    height: 80px;
+    border-radius: 4px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.song-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.song-info {
+    flex: 1;
+    text-align: left;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-right: 40px;
+}
+
+.song-title {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.song-album {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin: 0;
+}
+
+.song-duration {
+    color: white;
+    opacity: 0.7;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    margin-left: auto;
+    padding-right: 10px;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 100% 50%;
+    }
+    50% {
+        background-position: 50% 100%;
+    }
+    75% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 50% 0%;
+    }
+}
+
+.mood-btn.selected {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #6968D4;
+    transform: translateY(-2px);
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.menu-logo {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+/* Update existing sidebar-header styles */
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/Moodify-Logo.png" type="image/png">
+    <title>Moodify</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <img src="images/Moodify-Logo.png" alt="Moodify Logo" class="menu-logo">
+                <h4 class="text-white mb-4 mt-4">Menu</h4>
+            </div>
+            <button class="btn-close-sidebar" id="closeSidebar">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+        <div class="sidebar-menu">
+            <a href="#" class="menu-item">
+                <i class="bi bi-graph-up"></i>
+                Mood Analysis
+            </a>
+            <a href="#" class="menu-item">
+                <i class="bi bi-moon-stars"></i>
+                Ambient Mode
+            </a>
+            <a href="#" class="menu-item">
+                <i class="bi bi-people"></i>
+                Share Study Sessions
+            </a>
+            <a href="#" class="menu-item">
+                <i class="bi bi-music-note-list"></i>
+                Goal-Oriented Playlist
+            </a>
+            <a href="#" class="menu-item">
+                <i class="bi bi-clock-history"></i>
+                Mood History Tracking
+            </a>
+            <a href="#" class="menu-item">
+                <i class="bi bi-devices"></i>
+                Multi-Device Sync
+            </a>
+        </div>
+    </div>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Navigation -->
+        <nav class="navbar p-4">
+            <div class="container">
+                <div class="navbar-brand text-white fs-3">
+                    <i class="bi bi-list me-2" id="menuToggle" style="cursor: pointer;"></i>
+                    <a href="/" onclick="window.location.reload(); return false;" style="text-decoration: none; color: white;">
+                        Moodify
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="container text-center main-content">
+            <h1 class="main-title mb-5">Find Music That Matches Your Mood.</h1>
+            
+            <!-- Search Section -->
+            <div class="search-container">
+                <div class="search-box mb-4">
+                    <input type="text" class="form-control" id="moodInput" placeholder="What kind of song are you looking for?">
+                    <button class="btn-arrow" id="submitMood">
+                        <i class="bi bi-arrow-up-circle-fill"></i>
+                    </button>
+                    <div class="loading-spinner" id="loadingSpinner">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mood Selection -->
+                <div class="mood-section">
+                    <p class="mood-question mb-4">How are you feeling today?</p>
+                    <div class="mood-buttons">
+                        <button class="btn mood-btn" data-mood="excited">Excited!</button>
+                        <button class="btn mood-btn" data-mood="sad">I am feeling kinda sad :(</button>
+                        <button class="btn mood-btn" data-mood="relax">I just need a song to relax...</button>
+                    </div>
+                </div>
+
+                <!-- Add this after the mood-section div -->
+                <div class="results-section" id="resultsSection" style="display: none;">
+                    <h3 class="text-white mb-4">Here are some songs for your mood:</h3>
+                    <div class="results-container" id="resultsContainer">
+                        <!-- Results will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add this before closing the main-container div -->
+        <div class="footer-text">
+            <p>Find Your Focus, Calm Your Mind, Boost Productivity</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/playlist-data.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/mood-processor.js"></script>
+</body>
+</html>
